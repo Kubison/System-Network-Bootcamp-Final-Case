@@ -1070,10 +1070,253 @@ erişimi olmamalı
   
   ![Resim 31](https://user-images.githubusercontent.com/49712212/144722055-37a2b31f-c22f-4727-9cb5-634c4d8bcd2d.png)
 
+  Kullanıcıların oluşturulması için kullanıcı özelliklerinin yazdığı csv'ye ve powershell scriptlerine ihtiyacım olduğunu farkettim. Python ile rastgele türkçe isimler, parola oluşturan bir script yazdım. Sonrasında da scriptle oluşturduğum csv’yi Powershell scripti ile okuyup kullanıcıları oluşturdum.
+
+```python
+import trnames
+import random 
+import string
 
 
+def generate_random_password():
+	letters = string.ascii_letters + string.digits
+	result_str = ''.join(random.choice(letters) for i in range (12))
+	return result_str+'!Qa1'
+
+
+file = open("users.csv","w")
+file.write("firstname,lastname,username,password,email,ou\n")
+
+def create_user(ou,number_of_employee,file):
+
+	for i in range(number_of_employee):
+		first_name = trnames.get_first_name()
+		last_name = trnames.get_last_name()
+		file.write(first_name)
+		file.write(",")
+		file.write(last_name)
+		file.write(",")
+		file.write((first_name+"."+last_name).lower())
+		file.write(",")
+		file.write(generate_random_password())
+		file.write(",")
+		file.write((first_name+"."+last_name+"@trendyol.com.tr").lower())
+		file.write(",")
+		file.write("\""+ou+"\"")
+		file.write("\n")
+	
+
+## Ankara
+create_user("OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Satis,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local",100,file)
+## İzmir
+create_user("OU=IK,OU=Izmir,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Pazarlama,OU=Izmir,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Satis,OU=Izmir,OU=Trendyol,DC=trendyol,DC=local",100,file)
+## İstanbul
+create_user("OU=IK,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Pazarlama,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Satis,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",100,file)
+create_user("OU=IT,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Muhasebe,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",5,file)
+create_user("OU=Yonetim,OU=Istanbul,OU=Trendyol,DC=trendyol,DC=local",5,file)
+
+
+file.close()
+  
+```
+Örnek csv dosyası
+  
+      firstname,lastname,username,password,email,ou
+      Pelin,Oren,pelin.oren,TagYMfJO7lBu!Qa1,pelin.oren@trendyol.com.tr,"OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Fatma,Ceri,fatma.ceri,m2mUcTT9JsOP!Qa1,fatma.ceri@trendyol.com.tr,"OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Emre,Kocaaslan,emre.kocaaslan,Kgxp8mwNTm7H!Qa1,emre.kocaaslan@trendyol.com.tr,"OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Fatma,Kuzey,fatma.kuzey,cGn80c8q3nLN!Qa1,fatma.kuzey@trendyol.com.tr,"OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Gulsen,Kurak,gulsen.kurak,6yKoexkF3bSw!Qa1,gulsen.kurak@trendyol.com.tr,"OU=IK,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Halil,Elik,halil.elik,Iuf7Ut0Ecdc9!Qa1,halil.elik@trendyol.com.tr,"OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Zeynep,Yasar,zeynep.yasar,SvG3NLXxxTlR!Qa1,zeynep.yasar@trendyol.com.tr,"OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Yasemin,Kirmizi,yasemin.kirmizi,qm9Y7UZ7Ouw3!Qa1,yasemin.kirmizi@trendyol.com.tr,"OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Bekir,Guven,bekir.guven,LCWFNBYODeQs!Qa1,bekir.guven@trendyol.com.tr,"OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Serife,Ezeroglu,serife.ezeroglu,5sFCMos2Kgfi!Qa1,serife.ezeroglu@trendyol.com.tr,"OU=Pazarlama,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Salih,Karadeniz,salih.karadeniz,tboXDJRLg2BU!Qa1,salih.karadeniz@trendyol.com.tr,"OU=Satis,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Nergiz,Gungor,nergiz.gungor,AUIPRSUqhp2q!Qa1,nergiz.gungor@trendyol.com.tr,"OU=Satis,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
+      Serap,Yel,serap.yel,O5IvT6z9Rbel!Qa1,serap.yel@trendyol.com.tr,"OU=Satis,OU=Ankara,OU=Trendyol,DC=trendyol,DC=local"
 
   
+```powershell
+  
+  #Csv'den dosyayı al
+$Users = Import-csv C:\users.csv
+
+foreach ($User in $Users)
+{
+	#Her satırda kullanıcı bilgisini al
+		
+	$Username = $User.username
+	$Password = $User.password
+	$Firstname = $User.firstname
+	$Lastname = $User.lastname
+	$OU = $User.ou 
+  $email=$User.email
+	
+	#kullanıcıyı oluştur
+	New-ADUser `
+	-SamAccountName $Username `
+	-UserPrincipalName "$Username@trendyol.local" `
+	-Name "$Firstname $Lastname" `
+	-GivenName $Firstname `
+	-Surname $Lastname `
+	-Enabled $True `
+	-DisplayName "$Lastname, $Firstname" `
+	-Path $OU `
+	-EmailAddress $email `
+	-AccountPassword (convertto-securestring $Password -AsPlainText -Force) -ChangePasswordAtLogon $True
+            
+	
+}
+
+```
+
+  ![Resim 35](https://user-images.githubusercontent.com/49712212/144722317-0e5eb183-ce9d-4e90-8186-ccb1c94e9461.png)
+
+  Ardından 5gb-5gb olacak şekilde iki disk ekledim.
+  
+  ![Resim 36](https://user-images.githubusercontent.com/49712212/144722348-dab00e01-3dce-4128-a89f-2816e517f1df.png)
+  
+  Disk Management kısmına gittim, iki diski initalize ettim. Ardından Raid 0 için New Striped Volume seçeneğini seçtim.
+  
+  ![Resim 37](https://user-images.githubusercontent.com/49712212/144722363-c8169f6e-8d3b-4e5b-b1a2-0240452f2352.png)
+  
+  Eklediğim iki diski de seçtim.
+  
+  ![Resim 38](https://user-images.githubusercontent.com/49712212/144722370-74934bce-bd17-458c-a897-a1857780d3f2.png)
+  
+  Kontrolun ardından Raid 0 olarak diskin eklendiğini gördüm. 
+  
+  ![Resim 39](https://user-images.githubusercontent.com/49712212/144722380-495063b8-4f1b-4703-aea1-645f14a59bcb.png)
+  
+  Security Groupların oluşturulması ve ilgili OU'daki kullanıcıların eklenmesi için Powershell scriptleri kullandım.
+
+```powershell
+
+$group_il = 'Istanbul','Izmir','Ankara'
+$group_departman = 'Satis','Pazarlama','IK'
+$group_merkez = 'Yonetim','Muhasebe','IT','Satis','Pazarlama','Ik'
+
+foreach($il in $group_il)
+{
+    
+ if ($il -eq 'Istanbul') {
+    foreach($departman in $group_merkez){
+        New-ADGroup ` ${il}_$departman -Path "OU=$departman,OU=$il,OU=Trendyol,DC=trendyol,dc=local" -GroupCategory Security -GroupScope Global -PassThru –Verbose `
+        
+        Get-ADUser ` -SearchBase "OU=$departman,OU=$il,OU=Trendyol,DC=trendyol,DC=local" -Filter * | ForEach-Object {Add-ADGroupMember ` -Identity ${il}_$departman -Members $_ ` } `
+    }
+}
+else{
+    foreach($departman in $group_departman){
+        New-ADGroup ` ${il}_$departman -Path "OU=$departman,OU=$il,OU=Trendyol,DC=trendyol,dc=local" -GroupCategory Security -GroupScope Global -PassThru –Verbose `
+        
+        Get-ADUser ` -SearchBase "OU=$departman,OU=$il,OU=Trendyol,DC=trendyol,DC=local" -Filter * | ForEach-Object {Add-ADGroupMember ` -Identity ${il}_$departman -Members $_ ` } `
+    }
+}
+
+}
+```
+  
+  Klasörlerin paylaştırılması ve doğru yetkilendirmenin yapılması için Powershell scriptleri kullandım.
+  
+  
+```powershell
+  
+$folder_il = 'Istanbul','Izmir','Ankara'
+$folder_departman = 'Satis','Pazarlama','IK'
+$folder_merkez = 'Yonetim','Muhasebe','IT','Satis','Pazarlama','IK'
+
+New-Item   ` "E:\Public" -itemtype directory `
+
+New-SMBShare ` -Name "Public" –Path "E:\Public" –FullAccess "TRENDYOL\Domain Admins" -ChangeAccess "TRENDYOL\Domain Users"   `
+
+foreach($il in $folder_il)
+{
+    New-Item   ` "E:\$il" -itemtype directory `  
+
+
+if ($il -eq 'Istanbul') {
+    foreach($departman in $folder_merkez){
+
+        New-Item   ` "E:\$il\$departman" -itemtype directory `     
+      
+        New-SMBShare ` -Name "${il}_$departman" –Path "E:\$il\$departman" –FullAccess "TRENDYOL\Domain Admins", "Trendyol\Istanbul_IT" -ChangeAccess "TRENDYOL\${il}_$departman"  -verbose  `     
+
+        
+        
+    }
+}
+else{
+    foreach($departman in $folder_departman){
+
+        New-Item   ` "E:\$il\$departman" -itemtype directory `
+
+        New-SMBShare ` -Name ${il}_$departman –Path "E:\$il\$departman" –FullAccess "TRENDYOL\Domain Admins", "TRENDYOL\Istanbul_IT" -ChangeAccess "TRENDYOL\${il}_$departman"   `     
+        
+    }
+}
+
+}
+
+```
+  Kontrolümün ardından problemsiz şekilde klasörlerin oluşturulup atamaların yapıldığını gördüm.
+  
+  ![Resim 42](https://user-images.githubusercontent.com/49712212/144722483-1667e1dd-5337-40dc-ac87-cba05edc200e.png)
+  
+  ![Resim 43](https://user-images.githubusercontent.com/49712212/144722496-56a1e72d-09df-4f16-8671-a70cc55ee102.png)
+  
+  Yedekliliğin sağlanması için bir bat dosyası oluşturup günlük çalışacak şekilde Task Scheduler'a ekledim.
+  
+  ![Resim 44](https://user-images.githubusercontent.com/49712212/144722517-44565e33-fe20-4e61-96f7-cd0d8149a64f.png)
+  
+  ![Resim 45](https://user-images.githubusercontent.com/49712212/144722528-a3c4fa6f-0ce8-4106-acbe-6bbdfbac2ba9.png)
+  
+  ![Resim 46](https://user-images.githubusercontent.com/49712212/144722534-9dd3084c-f773-4dbb-b2fb-1147260c1dbc.png)  
+
+  ![Resim 47](https://user-images.githubusercontent.com/49712212/144722554-75560c6a-54b2-44b3-9115-503b6b925e6b.png)
+  
+  ![Resim 48](https://user-images.githubusercontent.com/49712212/144722567-a8cfbb4e-da5e-4308-a0af-254c07ec4bc9.png)  
+  
+  ![Resim 49](https://user-images.githubusercontent.com/49712212/144722580-1e5bbb4c-ae1b-45c2-9787-83d2775c83ff.png)
+
+  Ekledikten sonra bir kere çalıştırıp dosyaların kopyalandığını doğruladım.
+  
+  ![Resim 50](https://user-images.githubusercontent.com/49712212/144722629-35d42b9f-077b-4ddf-98b7-8eaf42b24aa8.png)
+  
+  Resource Manager kısmına geçip yetkilendirmeleri yapmaya başladım. Öncelikle tüm dosya türlerini blokladım. Ardından istenildiği şekilde exceptionlar yazdım. 
+  
+  ![Resim 51](https://user-images.githubusercontent.com/49712212/144722659-86160bb8-e3d5-476a-97d2-1b2bd2836225.png)
+  
+  ![Resim 52](https://user-images.githubusercontent.com/49712212/144722672-2e2d6029-7221-4512-8133-9506ca6a5f59.png)
+  
+  Telnet Client kurulumu için Add Roles And Features kısmından gerekli feature'ı ekledim.
+  
+  ![Resim 53](https://user-images.githubusercontent.com/49712212/144722689-7388bbea-55dd-4f7e-9e63-72429be2f704.png)
+  
+  Telnet kurulduktan sonra elimdeki temiz vmden bir klon daha oluşturdum. Aynı gateway ve ip bloğundan statik ip verdim. Sonrasında Firewall üzerinden Rdp'ye izin verip servislerden de Rdp'yi enable ettim.  
+  
+  ![Resim 54](https://user-images.githubusercontent.com/49712212/144722715-4bc065d4-09cc-4078-89a6-2c9519d30206.png)  
+
+  ![Resim 55](https://user-images.githubusercontent.com/49712212/144722721-8c1f1705-6180-4077-82ec-358d5c556462.png)
+  
+  ![Resim 56](https://user-images.githubusercontent.com/49712212/144722728-e91a7596-0670-46f0-acc0-66707e745ce2.png)
+  
+  ![Resim 57](https://user-images.githubusercontent.com/49712212/144722741-91b6df2a-6878-44a8-9c95-2936c0f71d9f.png)
+  
+  Sunucuma geçip telnet komutunu parametreleri ile çalıştırdım ve başarılı olduğunu gördüm.
+  
+  ![Resim 58](https://user-images.githubusercontent.com/49712212/144722755-fdd32770-9a34-4ab8-af25-aac8d90c32a6.png)
+  
+  ![Resim 59](https://user-images.githubusercontent.com/49712212/144722766-68a3ba35-f236-4289-a89c-f33f3e265b9a.png)
+
 
 
   

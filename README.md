@@ -171,7 +171,7 @@ erişimi olmamalı
 
 <details> <summary>Network Projesi Çözümüm </summary> 
   
-  # Network Çözümü
+  # Network Projesi Çözümüm
   
   ## Topoloji
   
@@ -948,7 +948,7 @@ erişimi olmamalı
 
 </details>
 
- <details> <summary> Sistem Projesi Çözümüm </summary>
+ <details> <summary>Sistem Projesi Çözümüm </summary>
   
   ## Sistem Projesi Çözümüm
   

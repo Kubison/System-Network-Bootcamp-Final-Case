@@ -949,5 +949,132 @@ erişimi olmamalı
 </details>
 
  <details> <summary> Sistem Projesi Çözümüm </summary>
+  
+  ## Sistem Projesi Çözümüm
+  
+  Önceki Sistem ödevleri için Vmware Tools kurup ardından sysprep yapıp hazırladığım Windows 2019 sanal makinesinden DC-1 klonumu oluşturmaya başlıyorum.
     
+  ![Resim 1](https://user-images.githubusercontent.com/49712212/144721267-ea40a307-906e-4b08-9eeb-b772864069e8.png)
+  
+  Clone sihirbazı bana makinenin hangi durumunu klonlamak istediğimi soruyor. Makinem sysprep yapılıp kapandığı için o anki durumunu klonlamak istediğimi belirtiyorum.
+  
+  ![Resim 2](https://user-images.githubusercontent.com/49712212/144721349-e8a7d49a-6797-40d9-ba9a-744a09b4e077.png)
+  
+  Kişisel bilgisayarımdaki SSD üzerinde çok fazla alana sahip olmadığımdan Linked Clone seçiyorum. Böylece clone yapılan makinenin vm dosyaları kullanılıyor ve fazladan disk kaynağı kullanılmıyor (Eğer full clone seçilirse dosyalar birebir kopyalanır).
+    
+  ![Resim 3](https://user-images.githubusercontent.com/49712212/144721417-def56b1f-24ff-4c2e-8e91-a75f8b51e255.png)
+  
+  Sanal makinenin ismini belirleyip, klasörünü oluşturuyorum.  
+  
+  ![Resim 4](https://user-images.githubusercontent.com/49712212/144721433-14acf499-9781-47a5-ad35-2aaa391d4e72.png)
+  
+  Makineyi çalıştırmamın ardından kurulum ekranları karşıma geliyor. Klavye seçimi, uygulama dil ayarları, lisans sözleşmesinin kabul edilmesi, parolanın oluşturulmasının ardından DC-1 sanal makinem kullanılabilir hale geliyor.  
+
+  ![Resim 5](https://user-images.githubusercontent.com/49712212/144721471-083204fb-164a-4780-a276-a51ebf8b5eb9.png)
+
+  ![Resim 6](https://user-images.githubusercontent.com/49712212/144721475-0c165a44-14d3-401f-9cda-4b4a3cc39302.png)
+
+  ![Resim 7](https://user-images.githubusercontent.com/49712212/144721481-8f7dbea2-b00f-4f0e-8ddb-fd2faa91749f.png)
+
+  ![Resim 8](https://user-images.githubusercontent.com/49712212/144721483-1e8e08b1-5c77-46d3-83df-f6b2ced5478b.png)
+
+  Server Manager panelinden DC-1 makinemin adını değiştiriyorum.
+  
+  ![Resim 9](https://user-images.githubusercontent.com/49712212/144721520-ee4eb664-6d48-454e-a70d-bbfacb60ae16.png)
+  
+  Remote Desktop servisini açıyorum. 
+  
+  ![Resim 10](https://user-images.githubusercontent.com/49712212/144721532-5468bf96-d728-4350-b5c2-01e1b0eed7dd.png)
+  
+  Statik bir ip veriyorum. Bu sunucu aynı zamanda dns görevi de göreceğinden dns sunucuya da kendi ipsini yazıyorum.
+  
+  ![Resim 11](https://user-images.githubusercontent.com/49712212/144721552-e2e70cdf-d01b-4973-90a9-c0fcc636031d.png)
+  
+  Ipv6'yı kapatıyorum.
+  
+  ![Resim 12](https://user-images.githubusercontent.com/49712212/144721566-6e5f85a3-913a-494d-b8dc-08d12bbb6d77.png)
+  
+  IE enchanced Security'i kapatıyorum.  
+  
+  ![Resim 13](https://user-images.githubusercontent.com/49712212/144721585-5be14e66-f119-45d7-b4a0-2e43aba8cf79.png)
+  
+  Eğitmenimizin aksine Firewall'ı kapatmıyorum. Gerek duyulduğunda GPO ile firewall üzerine istenilen kural yazılabilir. Ardından Sanal makinenin isminin değişmesi için sunucuyu restart ediyorum. Ayarların başarılı olduğunu görüyorum.
+  
+  ![Resim 14](https://user-images.githubusercontent.com/49712212/144721610-fc4a60d0-af27-4619-af7e-a5140c5d2c4e.png)
+  
+  Dashboard üzerinden Add roles and features seçeneğine tıklıyorum.
+  
+  ![Resim 15](https://user-images.githubusercontent.com/49712212/144721623-1ae21d24-debc-4dd3-8b57-10524285e356.png)
+  
+  Rol bazlı bir yükleme yapacağımdan onu seçiyorum.
+  
+  ![Resim 16](https://user-images.githubusercontent.com/49712212/144721646-2ff65112-61d1-439d-b916-7fbc49758d1e.png)
+  
+  Mevcut sunucumu seçiyorum.
+  
+  ![Resim 17](https://user-images.githubusercontent.com/49712212/144721696-b8c6d3f3-8c4b-4e5d-ac45-5f2dc9a46f1f.png)
+  
+  Ad Ds rolünü seçiyorum. Bana bu rol için gerekli featureları sıralıyor, yüklemesine izin verip ilerliyorum.  
+  
+  ![Resim 18](https://user-images.githubusercontent.com/49712212/144721727-c80e791f-6892-454c-9cf9-16ea8b0c75d8.png)
+  
+  Gerekli featurelar zaten seçildiğinden bir şey seçmeden ilerliyorum.  
+  
+  ![Resim 19](https://user-images.githubusercontent.com/49712212/144721761-d0b68cb5-b47c-42aa-9b78-7855f8788956.png)
+  
+  Ad Ds rolü hakkında bilgi veren bir ekranla karşılaşıyorum. Dns rolünün eğer networkte yoksa bu makineye kurulması gerektiğinden bahsediyor.
+  
+  ![Resim 20](https://user-images.githubusercontent.com/49712212/144721782-19f46860-549b-49cd-940f-fb0b3ced1051.png)
+  
+  Son bir onay istiyor, kurulumu onaylıyorum.  
+  
+  ![Resim 21](https://user-images.githubusercontent.com/49712212/144721793-05d50785-a722-4f35-b057-69a4af4ce47c.png)
+  
+  Kurulumun ardından konfigürasyona başlıyorum. Yeni bir domain oluşturacağımdan "Add a new forest" seçeneğini seçiyorum. Domain ismini belirtiyorum.
+  
+  ![Resim 22](https://user-images.githubusercontent.com/49712212/144721808-318fc670-782b-4deb-b4fe-e078af84b5eb.png)
+  
+  Domain yapımda 2016 dışında DC kullanmayacağımdan forest ve domain funtional seviyelerini 2016 seçiyorum. Dns Server rolunu eklemesine izin veriyorum. Olası bir kurtarma anında kullanılacak DSRM parolamı oluşturuyorum.
+  
+  ![Resim 23](https://user-images.githubusercontent.com/49712212/144721838-8cd2216d-0105-4985-b9dc-57f36c6c08b2.png)
+  
+  Kurulu bir Dns yapısı olmadığından -yeni kurduğumdan- Dns Delegation yapmamıza izin vermiyor. İlerliyorum.  
+  
+  ![Resim 24](https://user-images.githubusercontent.com/49712212/144721883-395aec2c-80fe-4e06-a99d-35cdd574538e.png)
+  
+  Netbios ismimizi Trendyol olarak oluşturuyor. Değiştirmiyorum.  
+  
+  ![Resim 25](https://user-images.githubusercontent.com/49712212/144721909-01277912-fb97-4dbe-b10b-20e04cf34ffa.png)
+  
+  Active Directory yapısının kullanacağı klasörlerin pathlerini belirtiyor. Değiştirmiyorum.
+  
+  ![Resim 26](https://user-images.githubusercontent.com/49712212/144721932-51055915-59e7-45a8-bc19-b271bb88aab4.png)
+  
+  Özet şeklinde kurulum ayarlarını bana sunuyor. İlerliyorum.  
+  
+  ![Resim 27](https://user-images.githubusercontent.com/49712212/144721963-a45d0f88-74ae-4024-9872-577caafcddf7.png)
+  
+  Tüm gereksinimleri sağladığını söyleyen bir uyarıyla karşılaşıyorum. Kurulumu başlatıyorum.  
+  
+  ![Resim 28](https://user-images.githubusercontent.com/49712212/144721984-b78167f4-90c3-47c3-8b14-747b0c57b40d.png)
+  
+  Restartın ardından domain yapısına dahil olmuş şekilde sunucu açılıyor.
+  
+  ![Resim 29](https://user-images.githubusercontent.com/49712212/144722001-eef95861-df98-4fd1-ae06-3031abb21f17.png)
+  
+  Domain rolu kurulduktan sonra File Server rolü kurulumuna geçtim. File Server rolu kurulu olduğundan Resource Manager featureını seçip yüklüyorum.
+  
+  ![Resim 30](https://user-images.githubusercontent.com/49712212/144722034-4e713926-6c31-470e-ac2e-c43beb54373f.png)
+  
+  Sonrasında domain yapısında oluşturulacak Ou sayıca az olduğundan Gui üzerinden oluşturuyorum.  
+  
+  ![Resim 31](https://user-images.githubusercontent.com/49712212/144722055-37a2b31f-c22f-4727-9cb5-634c4d8bcd2d.png)
+
+
+
+
+  
+
+
+  
   </details>

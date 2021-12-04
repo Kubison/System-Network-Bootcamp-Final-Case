@@ -4,9 +4,9 @@ Trendyol System ve Network Bootcampinin bitirme projelerini ve çözümlerini i�
 
 ## Talimatlar
 
-<details> <summary>Network Proje Talimatları </summary> 
+<details> <summary>Network Projesi Talimatları </summary> 
 
-# Network Proje Talimatları
+# Network Projesi Talimatları
 3X Tekstil firması kuruluyor! 3X Firmasının Merkezi İstanbul’da, Kocaeli ve Sakarya’da Satış ofisleri, Bolu’da
 üretim atölyesi bulunuyor.
 
@@ -134,9 +134,9 @@ erişimi olmamalı
 
 </details>
 
-<details> <summary>Sistem Proje Talimatları </summary> 
+<details> <summary>Sistem Projesi Talimatları </summary> 
   
-  # Sistem Proje Talimatları
+  # Sistem Projesi Talimatları
   
   1. Bir domain yapısı kurulmalı. (Domain Controller kurulacak)
   

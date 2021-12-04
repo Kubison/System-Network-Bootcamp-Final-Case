@@ -4,9 +4,9 @@ Trendyol System ve Network Bootcampinin bitirme projelerini ve çözümlerini i�
 
 ## Talimatlar
 
-<details> <summary>Network Talimatları </summary> 
+<details> <summary>Network Proje Talimatları </summary> 
 
-# Network Talimatları
+# Network Proje Talimatları
 3X Tekstil firması kuruluyor! 3X Firmasının Merkezi İstanbul’da, Kocaeli ve Sakarya’da Satış ofisleri, Bolu’da
 üretim atölyesi bulunuyor.
 
@@ -134,9 +134,9 @@ erişimi olmamalı
 
 </details>
 
-<details> <summary>Sistem Talimatları </summary> 
+<details> <summary>Sistem Proje Talimatları </summary> 
   
-  # Sistem Talimatları
+  # Sistem Proje Talimatları
   
   1. Bir domain yapısı kurulmalı. (Domain Controller kurulacak)
   
@@ -176,6 +176,9 @@ erişimi olmamalı
   # Network Projesi Çözümüm
   
   ## Topoloji
+	
+   ![topology](https://user-images.githubusercontent.com/49712212/144723468-5b90c499-1aa0-40a2-b39c-ce220f462c2b.jpeg)
+
   
   [Network_topology.zip](https://github.com/Kubison/System-Network-Bootcamp-Final-Case/files/7654451/network.zip)
 

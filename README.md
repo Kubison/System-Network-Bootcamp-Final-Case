@@ -1,5 +1,7 @@
 # System-Network-Bootcamp-Final-Case
 
+Trendyol System ve Network Bootcampinin bitirme projelerini ve çözümlerini içermektedir.
+
 ## Talimatlar
 
 <details> <summary>Network Talimatları </summary> 
